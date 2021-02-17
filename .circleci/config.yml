@@ -61,10 +61,10 @@ jobs:
       - <<: *install_node_modules
       - run:
           name: Install netlify-cli
-          command: npm install -g --silent netlify-cli
+          command: yarn add netlify-cli
       - run:
           name: Deploy to Netlify
-          command: netlify deploy --auth $NETLIFY_TOKEN --dir=./public --alias frontadam --prod
+          command: ./node_modules/.bin/netlify deploy --auth $NETLIFY_TOKEN --dir=./public --alias frontadam --prod
 
 workflows:
   develop:
