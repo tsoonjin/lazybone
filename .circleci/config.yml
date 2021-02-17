@@ -64,7 +64,7 @@ jobs:
           command: yarn add vercel
       - run:
           name: Deploy to Vercel
-          command: ./node_modules/.bin/vercel --token $VERCEL_TOKEN ./public
+          command: ./node_modules/.bin/vercel --token $VERCEL_TOKEN --confirm ./public
   deploy-netlify:
     executor: node
     steps:
