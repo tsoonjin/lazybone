@@ -64,7 +64,7 @@ jobs:
           command: yarn add netlify-cli
       - run:
           name: Deploy to Netlify
-          command: ./node_modules/.bin/netlify deploy --auth $NETLIFY_TOKEN --dir=./public --alias frontadam --prod
+          command: ./node_modules/.bin/netlify deploy --auth $NETLIFY_TOKEN --site $NETLIFY_SITE_ID --dir=./public --prod
 
 workflows:
   develop:
