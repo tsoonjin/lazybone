@@ -51,7 +51,21 @@ jobs:
           paths:
             - public
 
-  deploy:
+  deploy-vercel:
+    executor: node
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - <<: *restore_cache
+      - <<: *install_node_modules
+      - run:
+          name: Install vercel-cli
+          command: yarn add vercel
+      - run:
+          name: Deploy to Vercel
+          command: ./node_modules/.bin/vercel --token $VERCEL_TOKEN ./public
+  deploy-netlify:
     executor: node
     steps:
       - checkout
@@ -73,7 +87,14 @@ workflows:
       - build:
           requires:
             - test
-      - deploy:
+      - deploy-vercel:
+          context: app
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+      - deploy-netlify:
           context: app
           requires:
             - build
