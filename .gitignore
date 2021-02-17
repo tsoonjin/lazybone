@@ -1,1 +1,4 @@
 node_modules/
+public/
+.netlify/
+___ELDER___/
